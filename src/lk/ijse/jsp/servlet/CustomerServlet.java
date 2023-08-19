@@ -1,4 +1,4 @@
-package servlet;
+package lk.ijse.jsp.servlet;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;

@@ -1,4 +1,4 @@
-package dto;
+package lk.ijse.jsp.dto;
 
 public class CustomerDTO {
     private String id;
