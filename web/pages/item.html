@@ -145,6 +145,23 @@
                 }
             });
         });
+        $("#btnItemUpdate").click(function (){
+            let code = $("#itemCode").val();
+            let desc = $("#itemName").val();
+            let price = $("#itemPrice").val();
+            let qty=$("#itemQty").val();
+            $.ajax({
+                url:'item?code='+code+'&description='+desc+'&unitPrice='+price+'&qty='+qty,
+                method:'PUT',
+                success:function (res) {
+                    alert("Item Updated Sucsess");
+                    getAllItems();
+                },
+                error:function (err) {
+                    alert(err.responseJSON.message);
+                }
+            });
+        });
 </script>
 </body>
 </html>
