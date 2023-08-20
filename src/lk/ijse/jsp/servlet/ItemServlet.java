@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
+
 
 @WebServlet(urlPatterns = "/pages/item")
 public class ItemServlet extends HttpServlet {
@@ -82,5 +82,59 @@ public class ItemServlet extends HttpServlet {
             resp.getWriter().print(response.build());
         }
     }
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+//            String cusID = req.getParameter("cusID");
+//            PreparedStatement pstm2 = connection.prepareStatement("delete from Customer where cusID=?");
+//            pstm2.setObject(1, cusID);
+//            if (pstm2.executeUpdate() > 0) {
+//                JsonObjectBuilder response = Json.createObjectBuilder();
+//                response.add("state", "Ok");
+//                response.add("message", "Successfully Added.!");
+//                response.add("data", "");
+//                resp.getWriter().print(response.build());
+//            }
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        } catch (SQLException e) {
+//            JsonObjectBuilder response = Json.createObjectBuilder();
+//            response.add("state", "Error");
+//            response.add("message", e.getMessage());
+//            response.add("data", "");
+//            resp.setStatus(400);
+//            resp.getWriter().print(response.build());
+//        }
+//    }
+        String code = req.getParameter("code");
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+            PreparedStatement pstm2 = connection.prepareStatement("delete from Item where ItemCode=?");
+            pstm2.setObject(1, code);
+            resp.addHeader("Content-Type", "application/json");
+            if (pstm2.executeUpdate() > 0) {
+                JsonObjectBuilder response = Json.createObjectBuilder();
+                response.add("state", "Ok");
+                response.add("message", "Successfully Deleted.!");
+                response.add("data", "");
+                resp.getWriter().print(response.build());
+            }
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            JsonObjectBuilder response = Json.createObjectBuilder();
+            response.add("state", "Error");
+            response.add("message", e.getMessage());
+            response.add("data", "");
+            resp.setStatus(400);
+            resp.getWriter().print(response.build());
+        }
+    }
+
 
 }

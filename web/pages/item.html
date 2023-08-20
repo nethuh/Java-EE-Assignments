@@ -129,6 +129,22 @@
                 }
             });
         });
+        $("#btnItemDelete").click(function(){
+            let  code=$("#itemCode").val();
+            $.ajax({
+                url:'item?code='+code,
+                method:'DELETE',
+                success:function (resp){
+                    console.log(resp);
+                    alert(resp.message);
+                    getAllItems();
+                },
+                error:function (error){
+                    console.log(error.responseJSON);
+                    alert(error.responseJSON.message);
+                }
+            });
+        });
 </script>
 </body>
 </html>

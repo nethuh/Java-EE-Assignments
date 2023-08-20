@@ -76,31 +76,6 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
-//            String cusID = req.getParameter("cusID");
-//            PreparedStatement pstm2 = connection.prepareStatement("delete from Customer where cusID=?");
-//            pstm2.setObject(1, cusID);
-//            if (pstm2.executeUpdate() > 0) {
-//                JsonObjectBuilder response = Json.createObjectBuilder();
-//                response.add("state", "Ok");
-//                response.add("message", "Successfully Added.!");
-//                response.add("data", "");
-//                resp.getWriter().print(response.build());
-//            }
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        } catch (SQLException e) {
-//            JsonObjectBuilder response = Json.createObjectBuilder();
-//            response.add("state", "Error");
-//            response.add("message", e.getMessage());
-//            response.add("data", "");
-//            resp.setStatus(400);
-//            resp.getWriter().print(response.build());
-//        }
-//    }
         String id = req.getParameter("id");
         try {
             Class.forName("com.mysql.jdbc.Driver");
